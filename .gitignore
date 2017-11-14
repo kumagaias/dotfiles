@@ -1,0 +1,9 @@
+.vim/.cache
+.vim/.netrwhist
+.vim/bundle
+.vim/conf/*.vim
+.vim/dein
+.ssh
+!config
+.gitconfig.local
+check-keywords.sh
