@@ -69,6 +69,9 @@ filetype plugin on
 " <Leader> キー設定
 let mapleader = ','
 
+" cron 編集する時にエラーになるのを防ぐ
+set backupskip=/tmp/*,/private/tmp/*
+
 "-----ctags-----
 
 set tags=tags,ctags
