@@ -21,6 +21,8 @@ if [[ ${os} = 'Mac' ]]; then
   alias stup='~/Workcopy/tool/up-git-branch-files-to-staging/main.sh'
   source /usr/local/etc/bash_completion.d/git-completion.bash
   source /usr/local/etc/bash_completion.d/git-prompt.sh
+  # crontab -e で編集できるように
+  export EDITOR=vim
 
   # Mac App
   function numbers() {
