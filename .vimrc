@@ -75,6 +75,7 @@ set backupskip=/tmp/*,/private/tmp/*
 "-----ctags-----
 
 set tags=tags,ctags
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
 "-------style--------
 
