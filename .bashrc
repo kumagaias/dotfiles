@@ -121,6 +121,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # nodejs library path
 export NODE_PATH='/usr/local/lib/node_modules'
+export PATH="$PATH:./node_modules/.bin"
 
 # phpunit
 alias phpunit='~/Workcopy/tool/phpunit-local/phpunit.sh'
