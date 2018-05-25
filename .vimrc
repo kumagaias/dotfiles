@@ -138,7 +138,7 @@ set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
 set hlsearch
 
 " vimgrep の除外設定
-:set wildignore+=tags
+:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif
 
 "大文字小文字を区別しない
 set ignorecase
