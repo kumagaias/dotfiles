@@ -231,6 +231,7 @@ call dein#add('scrooloose/nerdcommenter')
 call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('kannokanno/previm')
+call dein#add('jelera/vim-javascript-syntax')
 let g:previm_open_cmd = 'open -a safari'
 nnoremap <Space>m :PrevimOpen<CR>
 
