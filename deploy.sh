@@ -57,6 +57,8 @@ if [ "${EXEC_MODE}" = "-e" ]; then
   # git
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > /usr/local/etc/bash_completion.d/git-prompt.sh
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > /usr/local/etc/bash_completion.d/git-completion.bash
+  # anyenv
+  git clone https://github.com/riywo/anyenv ~/.anyenv
   # Mac (BSD 系)
   if [[ ${os} = 'Mac' ]]; then
     brew install reattach-to-user-namespace
