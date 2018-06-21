@@ -213,15 +213,11 @@ call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
 call dein#add('Shougo/neocomplete.vim')
-call dein#add('violetyk/neocomplete-php.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('kien/ctrlp.vim')
-"let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'''
-let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|.png|.jpg|.gif|node_modules)$'
-" ドットで始まるファイルを検索可能に
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'''
 call dein#add('vim-syntastic/syntastic')
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_coffee_checkers = ['coffeelint']
@@ -258,12 +254,9 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 let g:syntastic_enable_signs = 1
 
-" Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+    \ 'php' : $HOME.'/.vim/dictionaries/php.dict'
+\ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -362,9 +355,6 @@ let g:syntastic_check_on_wq = 0
 inoremap <C-l> <Esc>:call PhpDocSingle()<CR>i
 nnoremap <C-l> :call PhpDocSingle()<CR>
 vnoremap <C-l> :call PhpDocSingle()<CR>
-
-" PHP complete
-let g:neocomplete_php_locale = 'ja'
 
 "------- dein end の後に書く必要があるもの -------"
 
