@@ -218,7 +218,10 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('kien/ctrlp.vim')
-let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'''
+"let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'''
+let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|.png|.jpg|.gif|node_modules)$'
+" ドットで始まるファイルを検索可能に
+let g:ctrlp_show_hidden = 1
 call dein#add('vim-syntastic/syntastic')
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_coffee_checkers = ['coffeelint']
