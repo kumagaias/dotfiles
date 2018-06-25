@@ -144,9 +144,3 @@ fi
 # pip
 export PATH=~/.local/bin:$PATH
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f ~/.anyenv/envs/ndenv/versions/v6.10.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . ~/.anyenv/envs/ndenv/versions/v6.10.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f ~/.anyenv/envs/ndenv/versions/v6.10.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . ~/.anyenv/envs/ndenv/versions/v6.10.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
