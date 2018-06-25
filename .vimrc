@@ -19,6 +19,11 @@ set backspace=indent,eol,start
 "マウスで選択した部分をクリップボードにコピーする
 set clipboard=unnamed,autoselect
 
+" コピー
+map <C-c> :w !win32yank.exe -i<CR><CR>
+" ペースト
+map <C-v> :r !win32yank.exe -o<CR>
+
 "「※」などの記号がずれるのを直す
 set ambiwidth=double
 
