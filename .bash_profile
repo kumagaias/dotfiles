@@ -60,7 +60,7 @@ fi
 IGNOREEOF=10
 
 # shortcut
-alias vi='vim'
+alias vi='nvim'
 alias here='find `pwd -P` -maxdepth 1'
 
 export LESS='-i -M -R'
@@ -127,8 +127,8 @@ export NVM_DIR="$HOME/.nvm"
 export NODE_PATH='/usr/local/lib/node_modules'
 export PATH="$PATH:./node_modules/.bin"
 
-# phpunit
-alias phpunit='~/Workcopy/tool/phpunit-local/phpunit.sh'
+# go
+export PATH="$PATH:~/go/bin"
 
 # anyenv
 if [[ -e ~/.anyenv ]]; then

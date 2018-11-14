@@ -1,3 +1,5 @@
+let OS = system('uname')
+
 "----基本設定-----
 
 " 文字コード
@@ -17,12 +19,14 @@ set mouse=a
 set backspace=indent,eol,start
 
 "マウスで選択した部分をクリップボードにコピーする
-set clipboard=unnamed,autoselect
+set clipboard=unnamed
 
-" コピー
-map <C-c> :w !win32yank.exe -i<CR><CR>
-" ペースト
-map <C-v> :r !win32yank.exe -o<CR>
+if OS != 'mac'
+  nnoremap <silent> <Space>y :.w !win32yank.exe -i<CR><CR>
+  vnoremap <silent> <Space>y :w !win32yank.exe -i<CR><CR>
+  nnoremap <silent> <Space>p :r !win32yank.exe -o<CR>
+  vnoremap <silent> <Space>p :r !win32yank.exe -o<CR>
+endif
 
 "「※」などの記号がずれるのを直す
 set ambiwidth=double
@@ -98,13 +102,13 @@ inoremap ' ''<LEFT>
 set autoindent
 
 "画面上でタブ文字が占める幅
-set tabstop=4
+set tabstop=2
 
 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set softtabstop=4
+set softtabstop=2
 
 " 自動インデントでずれる幅
-set shiftwidth=4
+set shiftwidth=2
 
 " 言語別
 augroup fileTypeIndent
@@ -117,6 +121,8 @@ autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=
 autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 augroup END
 
 "タブ入力を複数の空白入力に置き換える (既存のタブには影響しない)
@@ -222,12 +228,7 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('kien/ctrlp.vim')
-let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'''
-call dein#add('vim-syntastic/syntastic')
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_php_phpcs_args='--standard=psr2'
-let g:syntastic_javascript_checkers=['eslint']
+let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('eshion/vim-sftp-sync')
@@ -236,6 +237,17 @@ call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('kannokanno/previm')
 call dein#add('jelera/vim-javascript-syntax')
+call dein#add('thinca/vim-quickrun')
+call dein#add('w0rp/ale')
+call dein#add('posva/vim-vue')
+let g:ale_linters = {
+\ 'java': ['javac'],
+\ 'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+\ 'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
 let g:previm_open_cmd = 'open -a safari'
 nnoremap <Space>m :PrevimOpen<CR>
 
@@ -344,17 +356,6 @@ vmap ,, <Plug>NERDCommenterToggle
 
 " coffee script
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-
-" -----for syntastic-----
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " PHPDoc
 inoremap <C-l> <Esc>:call PhpDocSingle()<CR>i

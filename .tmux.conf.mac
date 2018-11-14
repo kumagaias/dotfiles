@@ -1,0 +1,4 @@
+# clipboard share
+unbind-key -T copy-mode-vi Space
+unbind-key -T copy-mode-vi Enter
+set-option -g default-command "reattach-to-user-namespace -l bash"
