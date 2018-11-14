@@ -1,5 +1,4 @@
 let OS = system('uname')
-
 "----基本設定-----
 
 " 文字コード
@@ -240,6 +239,10 @@ call dein#add('jelera/vim-javascript-syntax')
 call dein#add('thinca/vim-quickrun')
 call dein#add('w0rp/ale')
 call dein#add('posva/vim-vue')
+call dein#add('scrooloose/nerdtree')
+call dein#add('vim-scripts/surround.vim')
+call dein#add('vim-scripts/HTML-AutoCloseTag')
+call dein#add('romainl/Apprentice')
 let g:ale_linters = {
 \ 'java': ['javac'],
 \ 'javascript': ['eslint'],
@@ -254,6 +257,8 @@ nnoremap <Space>m :PrevimOpen<CR>
 call dein#end()
 nnoremap <Space>u <ESC>:call SftpUpload()<CR>
 nnoremap <Space>d <ESC>:call SftpDownload()<CR>''
+
+nnoremap <C-e> :NERDTreeToggle<CR>
 
 if dein#check_install()
   call dein#install()
@@ -365,5 +370,5 @@ vnoremap <C-l> :call PhpDocSingle()<CR>
 "------- dein end の後に書く必要があるもの -------"
 
 " color
-colorscheme apprentice
 syntax on
+colorscheme apprentice
