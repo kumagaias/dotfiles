@@ -222,7 +222,11 @@ call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-call dein#add('Shougo/neocomplete.vim')
+if ((has ('nvim')))
+  call dein#add('Shougo/deoplete.nvim')
+else
+  call dein#add('Shougo/neocomplete.vim')
+endif
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
