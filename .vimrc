@@ -121,7 +121,7 @@ autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.css
 augroup END
 
 "タブ入力を複数の空白入力に置き換える (既存のタブには影響しない)
@@ -251,13 +251,21 @@ call dein#add('w0rp/ale')
 call dein#end()
 
 " ale
-let g:ale_fixers = {
-\ 'javascript': ['eslint'],
-\}
 let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+
+let g:ale_linters = {
+\ 'html': [],
+\ 'css': ['stylelint'],
+\ 'javascript': ['eslint'],
+\ 'vue': ['eslint']
+\ }
 
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " previm
 let g:previm_open_cmd = 'open -a safari'
