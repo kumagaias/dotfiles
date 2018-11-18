@@ -218,106 +218,61 @@ endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
-
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-if ((has ('nvim')))
-  call dein#add('Shougo/deoplete.nvim')
-else
-  call dein#add('Shougo/neocomplete.vim')
-endif
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('kien/ctrlp.vim')
-let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
-call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('eshion/vim-sftp-sync')
-call dein#add('scrooloose/nerdcommenter')
-call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
-call dein#add('kchmck/vim-coffee-script')
 call dein#add('kannokanno/previm')
+call dein#add('kchmck/vim-coffee-script')
+call dein#add('kien/ctrlp.vim')
 call dein#add('jelera/vim-javascript-syntax')
-call dein#add('thinca/vim-quickrun')
-call dein#add('w0rp/ale')
 call dein#add('posva/vim-vue')
-call dein#add('scrooloose/nerdtree')
-call dein#add('vim-scripts/surround.vim')
-call dein#add('vim-scripts/HTML-AutoCloseTag')
 call dein#add('romainl/Apprentice')
-let g:ale_linters = {
-\ 'java': ['javac'],
-\ 'javascript': ['eslint'],
-\}
+call dein#add('scrooloose/nerdtree')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('thinca/vim-quickrun')
+call dein#add('tpope/vim-fugitive')
+if ((has ('nvim')))
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+  call dein#add('Shougo/deoplete.nvim')
+else
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/neocomplete.vim')
+endif
+call dein#add('vim-scripts/surround.vim')
+call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
+call dein#add('vim-scripts/HTML-AutoCloseTag')
+call dein#add('w0rp/ale')
+
+call dein#end()
+
+" ale
 let g:ale_fixers = {
 \ 'javascript': ['eslint'],
 \}
 let g:ale_fix_on_save = 1
+
+" ctrlp
+let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
+
+" previm
 let g:previm_open_cmd = 'open -a safari'
 nnoremap <Space>m :PrevimOpen<CR>
 
-call dein#end()
+" sftp
 nnoremap <Space>u <ESC>:call SftpUpload()<CR>
 nnoremap <Space>d <ESC>:call SftpDownload()<CR>''
 
+" NERDTree
 nnoremap <C-e> :NERDTreeToggle<CR>
 
 if dein#check_install()
   call dein#install()
 endif
-
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-let g:syntastic_enable_signs = 1
-
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'php' : $HOME.'/.vim/dictionaries/php.dict'
-\ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -325,18 +280,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 "------- コメントアウトプラグイン用 -------
 " Add spaces after comment delimiters by default
