@@ -62,6 +62,7 @@ IGNOREEOF=10
 # shortcut
 alias vi='nvim'
 alias here='find `pwd -P` -maxdepth 1'
+alias k='kubectl'
 
 export LESS='-i -M -R'
 
