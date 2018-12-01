@@ -1,25 +1,6 @@
 let OS = system('uname')
-"----基本設定-----
 
-" 文字コード
-set encoding=utf-8
-set fileencodings=utf-8,sjis,iso-2022-jp,cp932,euc-jp
-
-" 改行コード
-set fileformats=unix,dos,mac
-
-"ターミナルで256色表示を使う
-set t_Co=256
-
-"マウスを使えるようにする
-set mouse=a
-
-"バックスペースキーで行頭を削除する
-set backspace=indent,eol,start
-
-"マウスで選択した部分をクリップボードにコピーする
-set clipboard=unnamed
-
+" copy
 if OS != 'mac'
   nnoremap <silent> <Space>y :.w !win32yank.exe -i<CR><CR>
   vnoremap <silent> <Space>y :w !win32yank.exe -i<CR><CR>
@@ -27,89 +8,52 @@ if OS != 'mac'
   vnoremap <silent> <Space>p :r !win32yank.exe -o<CR>
 endif
 
+" file
+set encoding=utf-8
+set fileencodings=utf-8,sjis,iso-2022-jp,cp932,euc-jp
+set fileformats=unix,dos,mac
+set noswapfile
+
+" mouse
+set mouse=a
+set clipboard=unnamed
+
+" display
+set t_Co=256
+
+" key
+set backspace=indent,eol,start
+
 "「※」などの記号がずれるのを直す
 set ambiwidth=double
-
-" swap ファイル作らない
-set noswapfile
 
 " tab
 nnoremap <silent><C-m> :tabe %<CR>
 nnoremap <silent><C-n> :tabe new<CR>
 
-" buffer
-" 編集中ファイルを切り替える時に保存しなくても良くなる
-set hidden
-
 " move
 noremap <S-h> ^
 noremap <S-l> $
+inoremap <silent> jj <ESC>
 
-set showtabline=2 " 常にタブラインを表示
+" buffer
+set hidden
 
-" The prefix key.
-nnoremap    [Tag]   <Nop>
-nmap    t [Tag]
-" Tag jump
-for n in range(1, 9)
-  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
-" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
-
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
-" tc 新しいタブを一番右に作る
-map <silent> [Tag]x :tabclose<CR>
-" tx タブを閉じる
-map <silent> [Tag]n :tabnext<CR>
-" tn 次のタブ
-map <silent> [Tag]p :tabprevious<CR>
-" tp 前のタブ
-
-" タグジャンプ
-nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-
-" 120 文字に縦線"
-set colorcolumn=120
-
-" 拡張子に応じてファイルを開く
-filetype plugin on
-
-" <Leader> キー設定
+" leader
 let mapleader = ','
 
-" cron 編集する時にエラーになるのを防ぐ
+" prevent cron edit error
 set backupskip=/tmp/*,/private/tmp/*
 
-"-----ctags-----
-
-set tags=tags,ctags
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-"-------style--------
-
-" 自動補完
-inoremap { {}<LEFT>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [ []<LEFT>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap ( ()<LEFT>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-
-"改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+" indent
 set autoindent
-
-"画面上でタブ文字が占める幅
 set tabstop=2
-
-" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set softtabstop=2
-
-" 自動インデントでずれる幅
 set shiftwidth=2
+set expandtab
 
-" 言語別
+" file type
+filetype plugin on
 augroup fileTypeIndent
 autocmd!
 autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -121,45 +65,51 @@ autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 augroup END
 
-"タブ入力を複数の空白入力に置き換える (既存のタブには影響しない)
-set expandtab
+" status bar
+set laststatus=2
+set showcmd
+set statusline+=%<%F
+set statusline+=%m
+set statusline+=[%{&fileformat}]
+set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
+set statusline+=%r
 
-"括弧の対応をハイライト
-set showmatch
+" tab
+set showtabline=2
 
-"ルーラー,行番号を表示
+" ruluer and line number
 set ruler
+set colorcolumn=120
 set number
 
-"タブ、空白、改行の可視化
+" white space
 set list
 set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
 
-" ペースト切り替え
-:imap <F11> <nop>
-:set pastetoggle=<F11>
+" highlight
+set showmatch
 
-"-------search-----
-
-"検索結果をハイライトする
+" search and highlight
 set hlsearch
-
-" vimgrep の除外設定
-:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif
-
-"大文字小文字を区別しない
 set ignorecase
-
-" ハイライト表示切替
 nnoremap <F3> :noh<CR>
+nnoremap nn :noh<CR>
 
-" 関数ジャンプで複数ある時は一覧を表示
+" replace
+set inccommand=split
+
+" ctags
+set tags=tags,ctags
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <C-]> g<C-]>
+nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " vimgrep
+:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,*.git
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
 autocmd QuickfixCmdPost vimgrep copen
 autocmd QuickfixCmdPost grep copen
@@ -172,43 +122,12 @@ nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 
-"-------status line-------
-
-" ステータスラインを常に表示
-set laststatus=2
-
-" ステータスラインにコマンドを表示
-set showcmd
-
-" ファイル名表示
-set statusline+=%<%F
-
-" 変更のチェック表示
-set statusline+=%m
-
-" ファイルフォーマット表示
-set statusline+=[%{&fileformat}]
-
-" 文字コード表示
-set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
-
-" 読み込み専用かどうか表示
-set statusline+=%r
-
-"-------file operation-----
-
-" カレントファイルをコピー
+" file edit
 command! -nargs=1 -complete=file Copy f %:h/<args> | :w
-
-" カレントファイルをリネーム
 command! -nargs=1 -complete=file Rename f %:h/<args> | call delete(expand('#')) | :w
-
-" カレントファイルをデリート
 command! -nargs=0 -complete=file Delete call delete(expand('%'))
 
-"------- plugin -------
-
-" 個別の config がある場合はロード
+" plugin
 runtime! conf/*.vim
 
 " dein
@@ -254,13 +173,6 @@ call dein#end()
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 
-let g:ale_linters = {
-\ 'html': [],
-\ 'css': ['stylelint'],
-\ 'javascript': ['eslint'],
-\ 'vue': ['eslint']
-\ }
-
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
 
@@ -289,40 +201,21 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"------- コメントアウトプラグイン用 -------
-" Add spaces after comment delimiters by default
+" comment out
 let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
-
-" coffee script
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 
 " PHPDoc
 inoremap <C-l> <Esc>:call PhpDocSingle()<CR>i
 nnoremap <C-l> :call PhpDocSingle()<CR>
 vnoremap <C-l> :call PhpDocSingle()<CR>
-
-"------- dein end の後に書く必要があるもの -------"
 
 " color
 syntax on
