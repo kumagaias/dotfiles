@@ -46,6 +46,9 @@ fi
 # Linux
 if [[ ${os} = 'Linux' ]]; then
   alias ll='ls -la --color=auto'
+
+  # VS Code
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 
 # Windows, Msys2
