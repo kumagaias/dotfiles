@@ -20,7 +20,7 @@
     prompt = false
 
 [core]
-    editor = '/usr/local/bin/vim'
+    editor = '/usr/local/bin/nvim'
     autocrlf = false
     quotepath = false
 
