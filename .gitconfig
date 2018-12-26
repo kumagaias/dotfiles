@@ -20,7 +20,7 @@
     prompt = false
 
 [core]
-    editor = '/usr/bin/vi'
+    editor = '/usr/local/bin/vim'
     autocrlf = false
     quotepath = false
 
