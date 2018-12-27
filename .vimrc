@@ -170,10 +170,10 @@ if ((has ('nvim')))
   call dein#add('Shougo/deoplete.nvim')
 else
   call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neocomplete.vim')
 endif
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
 call dein#add('vim-scripts/surround.vim')
 call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
 call dein#add('vim-scripts/HTML-AutoCloseTag')
