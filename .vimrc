@@ -122,7 +122,7 @@ nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " vimgrep
 :set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,*.git
-set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
+set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ --exclude-dir=tmp\ --exclude-dir=cache\
 autocmd QuickfixCmdPost vimgrep copen
 autocmd QuickfixCmdPost grep copen
 nnoremap <expr> <Space>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
@@ -190,6 +190,7 @@ let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
 " previm
 let g:previm_open_cmd = 'open -a safari'
