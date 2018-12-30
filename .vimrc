@@ -121,8 +121,7 @@ nnoremap <C-]> g<C-]>
 nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " vimgrep
-:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,*.git
-set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ --exclude-dir=tmp\ --exclude-dir=cache\
+:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,.svn/**,.git/**,node_modules/**,tmp/**,cache/**
 autocmd QuickfixCmdPost vimgrep copen
 autocmd QuickfixCmdPost grep copen
 nnoremap <expr> <Space>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
