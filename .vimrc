@@ -109,7 +109,7 @@ set showmatch
 set hlsearch
 set ignorecase
 nnoremap <F3> :noh<CR>
-nnoremap nn :noh<CR>
+nnoremap mm :noh<CR>
 
 " replace
 set inccommand=split
