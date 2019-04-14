@@ -121,7 +121,7 @@ nnoremap <C-]> g<C-]>
 nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " vimgrep
-:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,.svn/**,.git/**,node_modules/**,tmp/**,cache/**
+:set wildignore=tags,*.jpg,*.jpeg,*.png,*.gif,.svn/**,.git/**,node_modules/**,tmp/**,cache/**,vendor/**
 autocmd QuickfixCmdPost vimgrep copen
 autocmd QuickfixCmdPost grep copen
 nnoremap <expr> <Space>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
@@ -167,6 +167,7 @@ if ((has ('nvim')))
   call dein#add('roxma/nvim-yarp')
   call dein#add('roxma/vim-hug-neovim-rpc')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('fatih/vim-go')
 else
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/neocomplete.vim')
@@ -228,6 +229,9 @@ vmap ,, <Plug>NERDCommenterToggle
 inoremap <C-l> <Esc>:call PhpDocSingle()<CR>i
 nnoremap <C-l> :call PhpDocSingle()<CR>
 vnoremap <C-l> :call PhpDocSingle()<CR>
+
+" go
+let g:go_version_warning = 0
 
 " color
 syntax on
