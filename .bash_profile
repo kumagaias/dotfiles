@@ -49,6 +49,9 @@ if [[ ${os} = 'Linux' ]]; then
 
   # VS Code
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  # Vagrant
+  export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 fi
 
 # Windows, Msys2
@@ -64,8 +67,10 @@ IGNOREEOF=10
 
 # shortcut
 alias vi='nvim'
+alias vim='nvim'
 alias here='find `pwd -P` -maxdepth 1'
 alias k='kubectl'
+alias vimdiff='nvim -d '
 
 export LESS='-i -M -R'
 
@@ -144,6 +149,12 @@ if [[ -e ~/.anyenv ]]; then
         export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
     done
 fi
+
+# go
+export GOPATH=~/go
+
+# VS Code
+export DISPLAY=:0.0
 
 # pip
 export PATH=~/.local/bin:$PATH
