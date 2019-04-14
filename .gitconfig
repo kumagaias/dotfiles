@@ -8,6 +8,9 @@
 [diff]
     tool = vimdiff
 
+[mergetool "vimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED
+
 [alias]
     l = log
     co = checkout
