@@ -178,6 +178,8 @@ call dein#add('vim-scripts/surround.vim')
 call dein#add('vim-scripts/PDV--phpDocumentor-for-Vim')
 call dein#add('vim-scripts/HTML-AutoCloseTag')
 call dein#add('w0rp/ale')
+call dein#add('szw/vim-tags')
+call dein#add('vim-scripts/grep.vim')
 
 call dein#end()
 
@@ -202,6 +204,11 @@ nnoremap <Space>d <ESC>:call SftpDownload()<CR>''
 
 " NERDTree
 nnoremap <C-e> :NERDTreeToggle<CR>
+
+" vim-grep
+nnoremap ff <ESC>:Rgrep<CR>
+let Grep_Skip_Dirs = '.git node_modules tmp temp log logs'
+" let Grep_Skip_Files = '*.bak *~'
 
 if dein#check_install()
   call dein#install()

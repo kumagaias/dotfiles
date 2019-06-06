@@ -71,6 +71,8 @@ alias vim='nvim'
 alias here='find `pwd -P` -maxdepth 1'
 alias k='kubectl'
 alias vimdiff='nvim -d '
+alias mk='minikube'
+alias k='kubectl'
 
 export LESS='-i -M -R'
 
