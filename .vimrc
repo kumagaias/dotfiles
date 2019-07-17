@@ -56,7 +56,6 @@ set expandtab
 filetype plugin on
 augroup fileTypeIndent
 autocmd!
-autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.vim* setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.sh setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -65,7 +64,9 @@ autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.{html,htm,vue,ts} set filetype=html
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 augroup END
 
@@ -158,6 +159,7 @@ call dein#add('kchmck/vim-coffee-script')
 call dein#add('kien/ctrlp.vim')
 call dein#add('jelera/vim-javascript-syntax')
 call dein#add('posva/vim-vue')
+call dein#add('leafgarland/typescript-vim')
 call dein#add('romainl/Apprentice')
 call dein#add('scrooloose/nerdtree')
 call dein#add('scrooloose/nerdcommenter')

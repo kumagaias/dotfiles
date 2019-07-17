@@ -73,6 +73,7 @@ alias k='kubectl'
 alias vimdiff='nvim -d '
 alias mk='minikube'
 alias k='kubectl'
+alias p='python'
 
 export LESS='-i -M -R'
 
