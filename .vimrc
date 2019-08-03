@@ -189,7 +189,7 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 
 " ctrlp
-let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg)$'
+let g:ctrlp_custom_ignore = '\v[\/](.git|.svn|node_modules|.git|.png|.jpg|vendor)$'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
