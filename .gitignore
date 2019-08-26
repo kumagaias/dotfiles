@@ -7,3 +7,5 @@
 !config
 .gitconfig.local
 check-keywords.sh
+.config/*
+!.config/nvim

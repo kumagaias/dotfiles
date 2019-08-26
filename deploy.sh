@@ -66,8 +66,7 @@ if [ "${EXEC_MODE}" = "-e" ]; then
 
     brew tap phinze/cask
     brew install brew-cask
-    brew cask install skype
-    brew cask install skitch
+    brew cask install nvim
   fi
 fi
 

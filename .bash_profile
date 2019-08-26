@@ -62,6 +62,8 @@ if [[ ${os} = 'Windows' ]]; then
   alias ll='ls -la --color=auto'
 fi
 
+export LC_ALL=en_US.UTF-8
+
 # Shell only exists after the 10th consecutive Ctrl-d
 IGNOREEOF=10
 
