@@ -72,6 +72,8 @@ alias vimdiff='nvim -d '
 alias mk='minikube'
 alias k='kubectl'
 alias p='python'
+alias gc='gcloud'
+alias dc='docker-compose'
 
 export LESS='-i -M -R'
 
@@ -162,3 +164,6 @@ export PATH=~/.local/bin:$PATH
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 
 alias tf="terraform"
+
+# postgres
+export PGDATA="~/.pg/data"

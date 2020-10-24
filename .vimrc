@@ -16,7 +16,7 @@ set noswapfile
 
 " mouse
 set mouse=a
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " display
 set t_Co=256
@@ -181,6 +181,7 @@ call dein#add('vim-scripts/HTML-AutoCloseTag')
 call dein#add('w0rp/ale')
 call dein#add('szw/vim-tags')
 call dein#add('vim-scripts/grep.vim')
+call dein#add('prettier/vim-prettier')
 
 call dein#end()
 

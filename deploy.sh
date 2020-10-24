@@ -50,6 +50,9 @@ do
   ${CMD} ${SCRIPT_DIR}/${f} ${HOME}/${f}
 done
 
+# zsh
+${CMD} ${SCRIPT_DIR}/.bash_profile ${HOME}/.zprofile
+
 if [ "${EXEC_MODE}" = "-e" ]; then
   # vim settings
   mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
