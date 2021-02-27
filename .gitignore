@@ -9,3 +9,4 @@
 check-keywords.sh
 .config/*
 !.config/nvim
+.vscode

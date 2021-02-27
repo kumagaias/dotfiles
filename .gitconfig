@@ -26,6 +26,7 @@
     editor = '/usr/local/bin/nvim'
     autocrlf = false
     quotepath = false
+    excludesfile = '/Users/akihisakumagai/.gitignore'
 
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -37,3 +38,5 @@
 
 [pull]
     ff = only
+[user]
+	email = kumagaias@example.com

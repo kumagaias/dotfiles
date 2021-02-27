@@ -7,6 +7,7 @@ if OS != 'mac'
   nnoremap <silent> <Space>p :r !win32yank.exe -o<CR>
   vnoremap <silent> <Space>p :r !win32yank.exe -o<CR>
 endif
+set clipboard=unnamed
 
 " file
 set encoding=utf-8
@@ -16,7 +17,6 @@ set noswapfile
 
 " mouse
 set mouse=a
-" set clipboard=unnamed
 
 " display
 set t_Co=256
@@ -66,6 +66,7 @@ autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 augroup END
 
@@ -182,6 +183,7 @@ call dein#add('w0rp/ale')
 call dein#add('szw/vim-tags')
 call dein#add('vim-scripts/grep.vim')
 call dein#add('prettier/vim-prettier')
+call dein#add('slim-template/vim-slim')
 
 call dein#end()
 
@@ -197,7 +199,8 @@ let g:deoplete#enable_at_startup = 1
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
 " previm
-let g:previm_open_cmd = 'open -a safari'
+"let g:previm_open_cmd = 'open -a safari'
+let g:previm_open_cmd = 'open -a "Google Chrome"'
 nnoremap <Space>m :PrevimOpen<CR>
 
 " sftp

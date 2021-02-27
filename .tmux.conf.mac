@@ -6,4 +6,4 @@ bind-key    -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "reattach-to
 
 unbind-key -T copy-mode-vi Space
 unbind-key -T copy-mode-vi Enter
-set-option -g default-command "reattach-to-user-namespace -l bash"
+set-option -g default-command "reattach-to-user-namespace -l zsh"

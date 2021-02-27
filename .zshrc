@@ -18,11 +18,6 @@ esac
 if [[ ${os} = 'Mac' ]]; then
   alias ll='ls -laG'
   alias mongod='mongod --config /usr/local/etc/mongod.conf'
-  alias stup='~/Workcopy/tool/up-git-branch-files-to-staging/main.sh'
-  source /usr/local/etc/bash_completion.d/git-completion.bash
-  source /usr/local/etc/bash_completion.d/git-prompt.sh
-  # crontab -e で編集できるように
-  export EDITOR=vim
 
   # Mac App
   function numbers() {
@@ -74,20 +69,42 @@ alias k='kubectl'
 alias p='python'
 alias gc='gcloud'
 alias dc='docker-compose'
+alias vr="git for-each-ref --sort=committerdate refs/heads/ --format='%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
 
 export LESS='-i -M -R'
 
 # git
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\h\[\033[00m\]:\W\[\033[31m\]$(__git_ps1 [%s])\[\033[00m\]\$ '
 alias g='git'
 alias gn='git --no-pager'
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+
+PROMPT='[%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
+%F{yellow}$%f '
+
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt share_history
+setopt hist_ignore_all_dups
+bindkey -e
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
 
 # aws cli
-complete -C aws_completer aws
+# complete -C aws_completer aws
 
 # svn
-export SVN_EDITOR=vim
+export SVN_EDITOR=nvim
 
 # require fzy
 if type "fzy" > /dev/null 2>&1; then
@@ -167,3 +184,8 @@ alias tf="terraform"
 
 # postgres
 export PGDATA="~/.pg/data"
+
+# direnv
+export EDITOR=nvim
+# eval "$(direnv hook zsh)"
+eval "$(direnv hook bash)"
