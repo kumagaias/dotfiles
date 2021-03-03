@@ -85,8 +85,7 @@ zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 
-PROMPT='[%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
-%F{yellow}$%f '
+PROMPT='[%B%F{black}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f %F{yellow}$%f '
 
 # history
 HISTFILE=~/.zsh_history
@@ -187,5 +186,5 @@ export PGDATA="~/.pg/data"
 
 # direnv
 export EDITOR=nvim
-# eval "$(direnv hook zsh)"
-eval "$(direnv hook bash)"
+eval "$(direnv hook zsh)"
+# eval "$(direnv hook bash)"
